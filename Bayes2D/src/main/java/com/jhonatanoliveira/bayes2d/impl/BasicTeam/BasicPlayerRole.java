@@ -24,6 +24,11 @@ public abstract class BasicPlayerRole implements Bayes2dPlayerRole {
     public void doWhenPlayOn(Bayes2dControllerPlayer bayes2dPlayer) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    @Override
+    public void doWhenBeforeKickOff(Bayes2dControllerPlayer bayes2dPlayer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void doWhenKickOffOwn(Bayes2dControllerPlayer bayes2dPlayer) {

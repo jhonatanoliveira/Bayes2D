@@ -20,4 +20,8 @@ public class BasicDefenderPlayerRole extends BasicPlayerRole {
         bayes2dPlayer.getPlayer().move(-1, 0);
     }
     
+    @Override
+    public void doWhenPlayOn(Bayes2dControllerPlayer bayes2dPlayer) {
+    }
+    
 }

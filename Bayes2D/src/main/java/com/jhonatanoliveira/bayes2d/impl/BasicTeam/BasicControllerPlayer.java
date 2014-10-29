@@ -10,7 +10,7 @@ import com.jhonatanoliveira.bayes2d.impl.BasicTeam.roles.BasicDefenderPlayerRole
 import com.github.robocup_atan.atan.model.enums.PlayMode;
 import com.jhonatanoliveira.bayes2d.core.Bayes2dControllerPlayer;
 import com.jhonatanoliveira.bayes2d.core.Bayes2dGameSituations;
-import com.jhonatanoliveira.bayes2d.core.Bayes2dPlayerRole;
+import com.jhonatanoliveira.bayes2d.impl.BasicTeam.roles.BasicGoalKeeperPlayerRole;
 
 /**
  *
@@ -18,47 +18,17 @@ import com.jhonatanoliveira.bayes2d.core.Bayes2dPlayerRole;
  */
 public class BasicControllerPlayer extends Bayes2dControllerPlayer {
     
-    private BasicDefenderPlayerRole basicDefenderPlayerRole = new BasicDefenderPlayerRole();
-//    private BasicGoalKeeperPlayerRole basicGoalKeeperPlayerRole = new BasicGoalKeeperPlayerRole();
+    private final BasicDefenderPlayerRole basicDefenderPlayerRole = new BasicDefenderPlayerRole();
+    private final BasicGoalKeeperPlayerRole basicGoalKeeperPlayerRole = new BasicGoalKeeperPlayerRole();
     
     @Override
     public void decidePlayerRole() {
         switch (this.getPlayer().getNumber()) {
                 case 1 :
-                    this.getPlayer().move(-10, 0);
-                    break;
-                case 2 :
-                    this.getPlayer().move(-10, 10);
-                    break;
-                case 3 :
-                    this.getPlayer().move(-10, -10);
-                    break;
-                case 4 :
-                    this.getPlayer().move(-20, 0);
-                    break;
-                case 5 :
-                    this.getPlayer().move(-20, 10);
-                    break;
-                case 6 :
-                    this.getPlayer().move(-20, -10);
-                    break;
-                case 7 :
-                    this.getPlayer().move(-20, 20);
-                    break;
-                case 8 :
-                    this.getPlayer().move(-20, -20);
-                    break;
-                case 9 :
-                    this.getPlayer().move(-30, 0);
-                    break;
-                case 10 :
-                    this.getPlayer().move(-40, 10);
-                    break;
-                case 11 :
-                    this.getPlayer().move(-40, -10);
+                    this.setPlayerRole(this.basicGoalKeeperPlayerRole);
                     break;
                 default :
-                    throw new Error("number must be initialized before move");
+                    this.setPlayerRole(this.basicDefenderPlayerRole);
             }
     }
 
