@@ -1,1 +1,2 @@
-/Bayes2D/target/
+target/
+*.class
