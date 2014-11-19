@@ -1,0 +1,191 @@
+net
+{
+    node_size = (80 40);
+    HR_realname_Distancia_Robos_Bola = "Distancia_Robos_Bola";
+    HR_realname_Direcao_Vetor_Velocidade = "Direcao_Vetor_Velocidade";
+    HR_realname_Possibilidade_Pegar_Bola = "Possibilidade_Pegar_Bola";
+    HR_realname_Area_No_Campo = "Area_No_Campo";
+    HR_realname_Quantidade_Adversario = "Quantidade_Adversario";
+    HR_realname_Papel_Jogador = "Papel_Jogador";
+    HR_DBN_Num_Slices = "5";
+    HR_Desc = "";
+    HR_OOBN_CheckConsistency = "1";
+    HR_OOBN_FitExpand = "1";
+    HR_Zoom_ZoomFactor = "100";
+    HR_Groups_GroupColors = "";
+    HR_Groups_GroupNames = "";
+    HR_Groups_UserGroupsNo = "0";
+    HR_Utility_Link = "63";
+    HR_Probabilistic_Link = "63";
+    HR_Functional_Link = "63";
+    HR_Binding_Link = "63";
+    HR_Information_Arc = "63";
+    HR_Color_Interface = "21";
+    HR_Color_Instance = "0";
+    HR_Color_DiscreteFunction = "5";
+    HR_Color_Function = "4";
+    HR_Color_Utility = "36";
+    HR_Color_Decision = "17";
+    HR_Color_ContinuousChance = "48";
+    HR_Color_DiscreteChance = "16";
+    HR_Monitor_InitSD = "2";
+    HR_Monitor_Utility_Arrange = "0";
+    HR_Monitor_Mean_Variance = "1";
+    HR_Monitor_Chance_Utility = "1";
+    HR_Monitor_InitStates = "5";
+    HR_Monitor_OpenGraph = "0";
+    HR_Monitor_GraphPrecision = "100";
+    HR_Monitor_AutoUpdGraph = "0";
+    HR_Compile_MaxMinimalSeparators = "100000";
+    HR_Compile_ApproxEpsilon = "1.0E-5";
+    HR_Compile_Approximate = "0";
+    HR_Compile_SaveToMemory = "0";
+    HR_Compile_Compress = "0";
+    HR_Compile_TriangMethod = "0";
+    HR_Propagate_AutoNormal = "1";
+    HR_Propagate_AutoSum = "1";
+    HR_Propagate_Auto = "1";
+    HR_Font_Italic = "0";
+    HR_Font_Weight = "400";
+    HR_Font_Size = "-12";
+    HR_Font_Name = "com.apple.laf.AquaFonts$DerivedUIResourceFont[family=Lucida Grande,name=Lucida Grande,style=plain,size=13]";
+    HR_Grid_GridShow = "0";
+    HR_Grid_GridSnap = "0";
+    HR_Grid_Y = "40";
+    HR_Grid_X = "40";
+}
+
+node Papel_Jogador
+{
+    label = "";
+    position = (472 105);
+    states = ("goleiro" "zagueiro" "atacante");
+    HR_State_2 = "";
+    HR_NodeSize = "(153, 54)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+node Quantidade_Adversario
+{
+    label = "";
+    position = (219 206);
+    states = ("zero" "maior_que_zero");
+    HR_LinkGroup = "[Papel_Jogador:0]";
+    HR_LinkMode = "[Papel_Jogador:0]";
+    HR_NodeSize = "(189, 63)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+node Area_No_Campo
+{
+    label = "";
+    position = (775 201);
+    states = ("defesa" "ataque");
+    HR_State_4 = "";
+    HR_State_3 = "";
+    HR_State_2 = "";
+    HR_LinkGroup = "[Papel_Jogador:0]";
+    HR_LinkMode = "[Papel_Jogador:0]";
+    HR_NodeSize = "(155, 60)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+node Possibilidade_Pegar_Bola
+{
+    label = "";
+    position = (476 317);
+    states = ("baixa" "media" "alta");
+    HR_LinkControlPoints = "";
+    HR_State_2 = "";
+    HR_LinkGroup = "[Papel_Jogador:0]";
+    HR_LinkMode = "[Papel_Jogador:0]";
+    HR_NodeSize = "(183, 68)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+node Direcao_Vetor_Velocidade
+{
+    label = "";
+    position = (677 440);
+    states = ("na_direcao_bola" "oposto_bola");
+    HR_LinkControlPoints = "";
+    HR_LinkGroup = "[Possibilidade_Pegar_Bola:0]";
+    HR_LinkMode = "[Possibilidade_Pegar_Bola:0]";
+    HR_NodeSize = "(201, 70)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+node Distancia_Robos_Bola
+{
+    label = "";
+    position = (304 442);
+    states = ("menor_chance_pegar_bola" "maior_chance_pegar_bola");
+    HR_LinkGroup = "[Possibilidade_Pegar_Bola:0]";
+    HR_LinkMode = "[Possibilidade_Pegar_Bola:0]";
+    HR_NodeSize = "(189, 59)";
+    HR_Group = "0";
+    HR_Desc = "";
+    HR_State_1 = "";
+    HR_State_0 = "";
+}
+
+potential (Papel_Jogador | Quantidade_Adversario Area_No_Campo Possibilidade_Pegar_Bola)
+{
+    data
+     = (((( 0.3 0.6 0.1 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
+	  ( 0.2 0.7 0.1 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
+	  ( 0.1 0.8 0.1 ))	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
+	 (( 0.1 0.2 0.7 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
+	  ( 0.1 0.1 0.8 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
+	  ( 0 0.1 0.9 )))	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
+	((( 0.8 0.1 0.1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
+	  ( 0.7 0.2 0.1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
+	  ( 0.6 0.3 0.1 ))	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
+	 (( 0.2 0.5 0.3 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
+	  ( 0.1 0.5 0.4 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
+	  ( 0 0.5 0.5 ))));	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
+}
+
+potential (Quantidade_Adversario)
+{
+    data = ( 0.3 0.7 );
+}
+
+potential (Area_No_Campo)
+{
+    data = ( 0.6 0.4 );
+}
+
+potential (Possibilidade_Pegar_Bola | Distancia_Robos_Bola Direcao_Vetor_Velocidade)
+{
+    data
+     = ((( 0.3 0.5 0.2 )	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
+	 ( 0.6 0.3 0.1 ))	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
+	(( 0.1 0.2 0.7 )	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
+	 ( 0.3 0.5 0.2 )));	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
+}
+
+potential (Direcao_Vetor_Velocidade)
+{
+    data = ( 0.4 0.6 );
+}
+
+potential (Distancia_Robos_Bola)
+{
+    data = ( 0.6 0.4 );
+}

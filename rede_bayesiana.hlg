@@ -1,0 +1,96 @@
+Tue Nov 18 23:29:09 2014
+
+
+Moral links:
+
+    Marrying Area_No_Campo and Quantidade_Adversario
+    Marrying Possibilidade_Pegar_Bola and Quantidade_Adversario
+    Marrying Possibilidade_Pegar_Bola and Area_No_Campo
+    Marrying Distancia_Robos_Bola and Direcao_Vetor_Velocidade
+
+
+Triangulating prime component with 4 members:
+    Papel_Jogador, Quantidade_Adversario, Area_No_Campo,
+    Possibilidade_Pegar_Bola
+This component is a clique of cost 36
+
+Triangulating prime component with 3 members:
+    Possibilidade_Pegar_Bola, Direcao_Vetor_Velocidade, Distancia_Robos_Bola
+This component is a clique of cost 12
+
+
+Total cost of triangulation for all prime components is 48
+
+
+Elimination sequence:
+
+    Area_No_Campo
+    Quantidade_Adversario
+    Papel_Jogador
+    Distancia_Robos_Bola
+    Direcao_Vetor_Velocidade
+    Possibilidade_Pegar_Bola
+
+
+Cliques:
+
+Clique 2, 3 members, table size = 12:
+    Possibilidade_Pegar_Bola, Direcao_Vetor_Velocidade, Distancia_Robos_Bola
+
+Clique 1, 4 members, table size = 36:
+    Possibilidade_Pegar_Bola, Papel_Jogador, Quantidade_Adversario,
+    Area_No_Campo
+
+Total clique table size: 48
+
+
+The junction forest:
+
+Creating junction tree with clique 2 as root ...
+
+Cliques 1 and 2 linked, separator has 1 member and table size = 3:
+    Possibilidade_Pegar_Bola
+
+
+Assignment of potentials to cliques:
+
+    Node Papel_Jogador assigned to clique 1
+    Node Quantidade_Adversario assigned to clique 1
+    Node Area_No_Campo assigned to clique 1
+    Node Possibilidade_Pegar_Bola assigned to clique 2
+    Node Direcao_Vetor_Velocidade assigned to clique 2
+    Node Distancia_Robos_Bola assigned to clique 2
+
+
+Checking conditional probability potentials:
+
+    No error found
+
+
+Beliefs for chance nodes:
+
+    Papel_Jogador:
+	goleiro    0.378688
+	zagueiro   0.358592
+	atacante   0.26272
+
+    Quantidade_Adversario:
+	zero       0.3
+	maior_que_zero 0.7
+
+    Area_No_Campo:
+	defesa     0.6
+	ataque     0.4
+
+    Possibilidade_Pegar_Bola:
+	baixa      0.376
+	media      0.38
+	alta       0.244
+
+    Direcao_Vetor_Velocidade:
+	na_direcao_bola 0.4
+	oposto_bola 0.6
+
+    Distancia_Robos_Bola:
+	menor_chance_pegar_bola 0.6
+	maior_chance_pegar_bola 0.4

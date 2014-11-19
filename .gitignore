@@ -1,2 +1,3 @@
 target/
 *.class
+target/classes/com/jhonatanoliveira/bayesball/core/BayesBallBn.class

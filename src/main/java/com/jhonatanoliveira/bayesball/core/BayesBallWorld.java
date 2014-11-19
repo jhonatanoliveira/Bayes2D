@@ -5,7 +5,11 @@
  */
 package com.jhonatanoliveira.bayesball.core;
 
+import COM.hugin.HAPI.ExceptionHugin;
+import com.jhonatanoliveira.bayesball.core.roles.PlayerRoleEnum;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,13 +19,13 @@ public class BayesBallWorld extends World{
     
     private BayesBallBn bayesBallBn;
 
-    public BayesBallWorld() {
+    public BayesBallWorld() throws ExceptionHugin {
         this(TeamsColor.YELLOW, World.FIELD_RIGHT_SIDE, "224.5.23.2",10002,"127.0.0.1",20011);
     }
 
-    public BayesBallWorld(TeamsColor teamsColor, int fieldSide, String sslAddress, int sslPort, String grSimAddress, int grSimPort) {
+    public BayesBallWorld(TeamsColor teamsColor, int fieldSide, String sslAddress, int sslPort, String grSimAddress, int grSimPort) throws ExceptionHugin {
         super(teamsColor, fieldSide, sslAddress, sslPort, grSimAddress, grSimPort);
-        this.bayesBallBn = new BayesBallBn();
+        this.bayesBallBn = new BayesBallBn("rede_bayesiana.net");
     }
     
     @Override
@@ -30,21 +34,20 @@ public class BayesBallWorld extends World{
         if (this.teamsColor == TeamsColor.BLUE) {team = this.blueTeam;}
         else if (this.teamsColor == TeamsColor.YELLOW) {team = this.yellowTeam;}
         
+        PlayerRoleEnum playerRoleEnum;
         for (Player p : team.getPlayers()) {
-            this.bayesBallBn.setUp(this, p);
-            System.out.println(this.bayesBallBn.playerQuantityCloseToBall());
-            if (p.getId() == 5) {
-                this.goalKeepers.addPlayer(p);
-            } else if (p.getId() == 1) {
-                this.bottomDefenders.addPlayer(p);
-            } else if (p.getId() == 0) {
-                this.bottomDefenders.addPlayer(p);
-            } else if (p.getId() == 4) {
-                this.bottomDefenders.addPlayer(p);
-            } else if (p.getId() == 3) {
-                this.bottomDefenders.addPlayer(p);
-            } else if (p.getId() == 2) {
-                this.ballFollowers.addPlayer(p);
+            try {
+                this.bayesBallBn.setUp(this, p);
+                playerRoleEnum = this.bayesBallBn.decidePlayerRole();
+                if (playerRoleEnum == PlayerRoleEnum.GoalKeeper) {
+                    this.goalKeepers.addPlayer(p);
+                } else if (playerRoleEnum == PlayerRoleEnum.Defender) {
+                    this.defenders.addPlayer(p);
+                } else if (playerRoleEnum == PlayerRoleEnum.BallFollower) {
+                    this.ballFollowers.addPlayer(p);
+                }
+            } catch (ExceptionHugin ex) {
+                Logger.getLogger(BayesBallWorld.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

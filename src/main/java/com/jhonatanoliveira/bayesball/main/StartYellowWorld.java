@@ -6,8 +6,11 @@
 
 package com.jhonatanoliveira.bayesball.main;
 
+import COM.hugin.HAPI.ExceptionHugin;
 import com.jhonatanoliveira.bayesball.core.BayesBallWorld;
 import com.jhonatanoliveira.bayesball.core.TeamsColor;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +27,11 @@ public class StartYellowWorld implements Runnable {
 
     @Override
     public void run() {
-        this.bayesBallWorld = new BayesBallWorld(TeamsColor.YELLOW, bayesBallWorld.FIELD_RIGHT_SIDE, "224.5.23.2", 10020, "127.0.0.1", 20011);
+        try {
+            this.bayesBallWorld = new BayesBallWorld(TeamsColor.YELLOW, bayesBallWorld.FIELD_RIGHT_SIDE, "224.5.23.2", 10020, "127.0.0.1", 20011);
+        } catch (ExceptionHugin ex) {
+            Logger.getLogger(StartYellowWorld.class.getName()).log(Level.SEVERE, null, ex);
+        }
         while(this.isOn) {
             bayesBallWorld.update();
             bayesBallWorld.think();

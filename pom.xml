@@ -12,7 +12,7 @@
             <version>2.4.1</version>
         </dependency>
         <dependency>
-            <groupId>com.hugin</groupId>
+            <groupId>hugin</groupId>
             <artifactId>hugin</artifactId>
             <version>1.0</version>
         </dependency>

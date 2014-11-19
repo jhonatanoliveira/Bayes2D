@@ -33,7 +33,7 @@ public class World {
     protected Geometry geometry;
     protected GameSituations gameSituation;
     protected GoalKeeper goalKeepers;
-    protected Defender bottomDefenders;
+    protected Defender defenders;
     protected BallFollower ballFollowers;
     protected int fieldSide;
     
@@ -75,7 +75,7 @@ public class World {
         this.grSimClient = new GrSimClient(grSimAddress, grSimPort);
         
         this.goalKeepers = new GoalKeeper();
-        this.bottomDefenders = new Defender();
+        this.defenders = new Defender();
         this.ballFollowers = new BallFollower();
         
         this.setFieldSide(fieldSide);
@@ -195,13 +195,13 @@ public class World {
             if (p.getId() == 5) {
                 this.goalKeepers.addPlayer(p);
             } else if (p.getId() == 1) {
-                this.bottomDefenders.addPlayer(p);
+                this.defenders.addPlayer(p);
             } else if (p.getId() == 0) {
-                this.bottomDefenders.addPlayer(p);
+                this.defenders.addPlayer(p);
             } else if (p.getId() == 4) {
-                this.bottomDefenders.addPlayer(p);
+                this.defenders.addPlayer(p);
             } else if (p.getId() == 3) {
-                this.bottomDefenders.addPlayer(p);
+                this.defenders.addPlayer(p);
             } else if (p.getId() == 2) {
                 this.ballFollowers.addPlayer(p);
             }
@@ -211,7 +211,7 @@ public class World {
     public void executePlayersRole() {
         if (this.gameSituation == GameSituations.FORCE_START) {
             this.goalKeepers.doWhenForceStart(this);
-            this.bottomDefenders.doWhenForceStart(this);
+            this.defenders.doWhenForceStart(this);
             this.ballFollowers.doWhenForceStart(this);
         }
     }
@@ -235,7 +235,7 @@ public class World {
         }
         this.goalKeepers.clear();
         
-        for (Player player : this.bottomDefenders.getPlayers()) {
+        for (Player player : this.defenders.getPlayers()) {
             player.setVelx(KIController.velocityX(player.getXd(), player.getX(), player.getYd(), player.getY(), player.getOrientation()));
             player.setVely(KIController.velocityY(player.getXd(), player.getX(), player.getYd(), player.getY(), player.getOrientation(),player.getOrientationd()));
             player.setVelz(KIController.velocityZ(player.getOrientation(),player.getOrientationd()));
@@ -249,7 +249,7 @@ public class World {
             command.setWheelSpeed(false);
             this.getGrSimClient().addTeamCommand(command);
         }
-        this.bottomDefenders.clear();
+        this.defenders.clear();
         
         for (Player player : this.ballFollowers.getPlayers()) {
             player.setVelx(KIController.velocityX(player.getXd(), player.getX(), player.getYd(), player.getY(), player.getOrientation()));

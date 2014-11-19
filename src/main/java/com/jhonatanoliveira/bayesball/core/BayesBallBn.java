@@ -5,6 +5,9 @@
  */
 package com.jhonatanoliveira.bayesball.core;
 
+import COM.hugin.HAPI.*;
+import com.jhonatanoliveira.bayesball.core.roles.PlayerRoleEnum;
+
 /**
  *
  * @author jhonatanoliveira
@@ -13,8 +16,15 @@ public class BayesBallBn {
     
     private World world;
     private Player player;
+    private Domain domain;
 
-    public BayesBallBn() {
+    public BayesBallBn(String netLocation) throws ExceptionHugin {
+        ParseListener parseListener = new DefaultClassParseListener();
+        this.domain = new Domain (netLocation, parseListener);
+        this.domain.openLogFile(netLocation + ".log");
+        this.domain.triangulate(Domain.H_TM_BEST_GREEDY);
+        this.domain.compile();
+        this.domain.closeLogFile();
     }
     
     public void setUp(World world, Player player) {
@@ -87,8 +97,64 @@ public class BayesBallBn {
         return robotCloseToBall > 0;
     }
     
-    public void decidePlayerRole() {
+    public boolean fieldArea() {
+        return this.player.getX() < 0;
+    }
+    
+    public PlayerRoleEnum decidePlayerRole() throws ExceptionHugin{
+        this.domain.retractFindings();
         
+        LabelledDCNode direcaoVetorVelocidadeNode = (LabelledDCNode) this.domain.getNodeByName("Direcao_Vetor_Velocidade");
+        if(this.velocityDirection()) { direcaoVetorVelocidadeNode.selectState(0); } else { direcaoVetorVelocidadeNode.selectState(1); }
+        
+        LabelledDCNode distanciaRoboBolaNode = (LabelledDCNode) this.domain.getNodeByName("Distancia_Robos_Bola");
+        if(this.distanceRobotBall()) { distanciaRoboBolaNode.selectState(1); } else { distanciaRoboBolaNode.selectState(0); }
+        
+        LabelledDCNode quantidadeAdversarioNode = (LabelledDCNode) this.domain.getNodeByName("Quantidade_Adversario");
+        if(this.playerQuantityCloseToBall()) { quantidadeAdversarioNode.selectState(1); } else { quantidadeAdversarioNode.selectState(0); }
+        
+        LabelledDCNode areaCampoNode = (LabelledDCNode) this.domain.getNodeByName("Area_No_Campo");
+        if(this.fieldArea()) { areaCampoNode.selectState(1); } else { areaCampoNode.selectState(0); }
+        
+        this.domain.propagate (Domain.H_EQUILIBRIUM_SUM,Domain.H_EVIDENCE_MODE_NORMAL);
+        
+        LabelledDCNode papelJogadorNode = (LabelledDCNode) this.domain.getNodeByName("Papel_Jogador");
+        
+        double currentBelief = 0;
+        double bestBelief = 0;
+        PlayerRoleEnum selectedPlayerRoleEnum = PlayerRoleEnum.Defender;
+        for (int i=0; i<3; i++) {
+            currentBelief = papelJogadorNode.getBelief(i);
+            if (currentBelief > bestBelief) {
+                bestBelief = currentBelief;
+                switch (i) {
+                    case 0:
+                        selectedPlayerRoleEnum = PlayerRoleEnum.GoalKeeper;
+                        break;
+                    case 1:
+                        selectedPlayerRoleEnum = PlayerRoleEnum.Defender;
+                        break;
+                    case 2:
+                        selectedPlayerRoleEnum = PlayerRoleEnum.BallFollower;
+                        break;
+                }
+            }
+        }
+        
+        return selectedPlayerRoleEnum;
+    }
+    
+    /**
+     * Are there utility nodes in the list?
+     */
+    public static boolean containsUtilities (NodeList list) {
+        java.util.ListIterator it = list.listIterator();
+
+        while (it.hasNext())
+            if (it.next() instanceof UtilityNode)
+                return true;
+
+        return false;
     }
     
 }

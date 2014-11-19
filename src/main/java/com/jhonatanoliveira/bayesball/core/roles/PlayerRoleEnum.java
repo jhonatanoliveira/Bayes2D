@@ -10,5 +10,7 @@ package com.jhonatanoliveira.bayesball.core.roles;
  * @author jhonatanoliveira
  */
 public enum PlayerRoleEnum {
-    
+    BallFollower,
+    Defender,
+    GoalKeeper
 }
