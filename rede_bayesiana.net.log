@@ -1,4 +1,4 @@
-Tue Nov 18 23:47:28 2014
+Thu Nov 27 20:46:37 2014
 
 
 Moral links:
@@ -70,27 +70,27 @@ Checking conditional probability potentials:
 Beliefs for chance nodes:
 
     Papel_Jogador:
-	goleiro    0.378688
-	zagueiro   0.358592
-	atacante   0.26272
+	goleiro    0.125
+	zagueiro   0.125
+	atacante   0.75
 
     Quantidade_Adversario:
-	zero       0.3
-	maior_que_zero 0.7
+	zero       0.5
+	maior_que_zero 0.5
 
     Area_No_Campo:
-	defesa     0.6
-	ataque     0.4
+	defesa     0.5
+	ataque     0.5
 
     Possibilidade_Pegar_Bola:
-	baixa      0.376
-	media      0.38
-	alta       0.244
+	baixa      0.333333
+	media      0.333333
+	alta       0.333333
 
     Direcao_Vetor_Velocidade:
-	na_direcao_bola 0.4
-	oposto_bola 0.6
+	na_direcao_bola 0.5
+	oposto_bola 0.5
 
     Distancia_Robos_Bola:
-	menor_chance_pegar_bola 0.6
-	maior_chance_pegar_bola 0.4
+	menor_chance_pegar_bola 0.5
+	maior_chance_pegar_bola 0.5

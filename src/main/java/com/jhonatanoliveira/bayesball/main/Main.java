@@ -7,6 +7,8 @@
 package com.jhonatanoliveira.bayesball.main;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,16 +21,21 @@ public class Main {
      * @param args Terminal arguments
      */
     public static void main(String[] args) {
-        
+        try {
+            System.out.println("Iniciando...");
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         StartBlueWorld startBlueWorld = new StartBlueWorld();
         Thread t1 = new Thread(startBlueWorld);
         t1.setDaemon(true);
         t1.start();
         
-        StartYellowWorld startYellowWorld = new StartYellowWorld();
-        Thread t2 = new Thread(startYellowWorld);
-        t2.setDaemon(true);
-        t2.start();
+//        StartBnYellowWorld startYellowWorld = new StartBnYellowWorld();
+//        Thread t2 = new Thread(startYellowWorld);
+//        t2.setDaemon(true);
+//        t2.start();
        
         Scanner userInput = new Scanner(System.in);
         String userAnswer;

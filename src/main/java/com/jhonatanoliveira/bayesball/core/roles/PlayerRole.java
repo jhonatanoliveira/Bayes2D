@@ -50,4 +50,8 @@ public class PlayerRole {
         return players;
     }
     
+    public boolean isPlayersEmpty() {
+        return this.players.isEmpty();
+    }
+    
 }

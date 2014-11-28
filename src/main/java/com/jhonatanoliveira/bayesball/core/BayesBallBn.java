@@ -37,8 +37,8 @@ public class BayesBallBn {
         boolean isCurrentRobotMostCloseToBall = true;
         
         double distanceCurrentRobotToBall = Math.sqrt(
-                Math.pow(player.getX()-this.world.getBall().getX(), 2)
-                + Math.pow(player.getY()-this.world.getBall().getY(), 2));
+                Math.pow(this.player.getX()-this.world.getBall().getX(), 2)
+                + Math.pow(this.player.getY()-this.world.getBall().getY(), 2));
         double distanceOtherRobotToBall;
         if (isCurrentRobotMostCloseToBall) {
             for (Player bluePlayer : this.world.getBlueTeam().getPlayers()) {
@@ -62,7 +62,6 @@ public class BayesBallBn {
                 }
             }
         }
-        
         return isCurrentRobotMostCloseToBall;
     }
     
@@ -93,7 +92,6 @@ public class BayesBallBn {
                 robotCloseToBall++;
             }
         }
-        System.out.println(robotCloseToBall);
         return robotCloseToBall > 0;
     }
     

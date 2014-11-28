@@ -7,7 +7,6 @@ package com.jhonatanoliveira.bayesball.core;
 
 import COM.hugin.HAPI.ExceptionHugin;
 import com.jhonatanoliveira.bayesball.core.roles.PlayerRoleEnum;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,10 +43,23 @@ public class BayesBallWorld extends World{
                 } else if (playerRoleEnum == PlayerRoleEnum.Defender) {
                     this.defenders.addPlayer(p);
                 } else if (playerRoleEnum == PlayerRoleEnum.BallFollower) {
-                    this.ballFollowers.addPlayer(p);
+                    if (this.ballFollowers.isPlayersEmpty()) {
+                        this.ballFollowers.addPlayer(p);
+                    } else {
+                        this.defenders.addPlayer(p);
+                    }
+                } else {
+                    this.defenders.addPlayer(p);
                 }
             } catch (ExceptionHugin ex) {
                 Logger.getLogger(BayesBallWorld.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (this.goalKeepers.getPlayers().isEmpty()) {
+            for (Player player : this.defenders.getPlayers()) {
+                this.defenders.getPlayers().remove(player);
+                this.goalKeepers.addPlayer(player);
+                break;
             }
         }
     }

@@ -14,17 +14,21 @@ import com.jhonatanoliveira.bayesball.core.World;
  */
 public class BallFollower extends PlayerRole {
     
-    private static final float DISTANCE_FROM_BALL = 150;
-    private static final float ERROR_TOLERANCE = 50;
+    private static final float DISTANCE_FROM_BALL = 120;
+    private static final float ERROR_TOLERANCE = 5;
+    private static final float DISTANCE_FROM_ROBOT = 300;
     
     @Override
     public void doWhenForceStart(World world) {
+        int robotCount = 0;
         for (Player player : this.getPlayers()) {
             float lineAngle = PlayerRoleCommonUtilities.lineAngle(
                         player.getX(), player.getY(),
                         world.getGeometry().getFieldLength()/2, 0);
             float playerDesiredX = world.getBall().getX() - (-1) * world.getFieldSide() * DISTANCE_FROM_BALL * (float)Math.cos(lineAngle);
             float playerDesiredY = world.getBall().getY() - (-1) * DISTANCE_FROM_BALL * (float)Math.sin(lineAngle);
+            // Compensation for each robot
+            playerDesiredY += robotCount * DISTANCE_FROM_ROBOT;
             
             if (Math.abs(player.getX() - playerDesiredX) <= ERROR_TOLERANCE && Math.abs(player.getY() - playerDesiredY) <= ERROR_TOLERANCE) {
                 player.setXd((-1) *world.getFieldSide() * world.getGeometry().getFieldLength()/2);
@@ -42,6 +46,7 @@ public class BallFollower extends PlayerRole {
                     }
                 }
             }
+            robotCount++;
         }
     }
 }

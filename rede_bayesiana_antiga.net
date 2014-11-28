@@ -60,8 +60,6 @@ node Papel_Jogador
     label = "";
     position = (472 105);
     states = ("goleiro" "zagueiro" "atacante");
-    HR_LinkMode = "";
-    HR_LinkGroup = "";
     HR_State_2 = "";
     HR_NodeSize = "(153, 54)";
     HR_Group = "0";
@@ -149,67 +147,45 @@ node Distancia_Robos_Bola
 potential (Papel_Jogador | Quantidade_Adversario Area_No_Campo Possibilidade_Pegar_Bola)
 {
     data
-     = (((( 0.25 0 0.75 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
-	  ( 0.25 0 0.75 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
-	  ( 0.25 0 0.75 ))	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
-	 (( 0 0 1 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
-	  ( 0 0 1 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
-	  ( 0 0 1 )))	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
-	((( 0.25 0.5 0.25 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
-	  ( 0.25 0.5 0.25 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
-	  ( 0.25 0.5 0.25 ))	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
-	 (( 0 0 1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
-	  ( 0 0 1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
-	  ( 0 0 1 ))));	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
-    experience
-     = ((( 1.33333	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
-	   1.33333	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
-	   1.33333 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
-	 ( 1.33333	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
-	   1.33333	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
-	   1.33333 ))	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
-	(( 1.33333	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
-	   1.33333	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
-	   1.33333 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
-	 ( 1.33333	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
-	   1.33333	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
-	   1.33333 )));	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
+     = (((( 0.3 0.6 0.1 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
+	  ( 0.2 0.7 0.1 )	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
+	  ( 0.1 0.8 0.1 ))	%  Quantidade_Adversario=zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
+	 (( 0.1 0.2 0.7 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
+	  ( 0.1 0.1 0.8 )	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
+	  ( 0 0.1 0.9 )))	%  Quantidade_Adversario=zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
+	((( 0.8 0.1 0.1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=baixa
+	  ( 0.7 0.2 0.1 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=media
+	  ( 0.6 0.3 0.1 ))	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=defesa  Possibilidade_Pegar_Bola=alta
+	 (( 0.2 0.5 0.3 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=baixa
+	  ( 0.1 0.5 0.4 )	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=media
+	  ( 0 0.5 0.5 ))));	%  Quantidade_Adversario=maior_que_zero  Area_No_Campo=ataque  Possibilidade_Pegar_Bola=alta
 }
 
 potential (Quantidade_Adversario)
 {
-    data = ( 0.5 0.5 );
-    experience = 16;
+    data = ( 0.3 0.7 );
 }
 
 potential (Area_No_Campo)
 {
-    data = ( 0.5 0.5 );
-    experience = 16;
+    data = ( 0.6 0.4 );
 }
 
 potential (Possibilidade_Pegar_Bola | Distancia_Robos_Bola Direcao_Vetor_Velocidade)
 {
     data
-     = ((( 0.333333 0.333333 0.333333 )	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
-	 ( 0.333333 0.333333 0.333333 ))	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
-	(( 0.333333 0.333333 0.333333 )	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
-	 ( 0.333333 0.333333 0.333333 )));	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
-    experience
-     = (( 4	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
-	  4 )	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
-	( 4	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
-	  4 ));	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
+     = ((( 0.3 0.5 0.2 )	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
+	 ( 0.6 0.3 0.1 ))	%  Distancia_Robos_Bola=menor_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
+	(( 0.1 0.2 0.7 )	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=na_direcao_bola
+	 ( 0.3 0.5 0.2 )));	%  Distancia_Robos_Bola=maior_chance_pegar_bola  Direcao_Vetor_Velocidade=oposto_bola
 }
 
 potential (Direcao_Vetor_Velocidade)
 {
-    data = ( 0.5 0.5 );
-    experience = 16;
+    data = ( 0.4 0.6 );
 }
 
 potential (Distancia_Robos_Bola)
 {
-    data = ( 0.5 0.5 );
-    experience = 16;
+    data = ( 0.6 0.4 );
 }

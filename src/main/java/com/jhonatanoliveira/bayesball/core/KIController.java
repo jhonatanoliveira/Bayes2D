@@ -15,7 +15,7 @@ public class KIController {
     /*
     Controller gain.
     */
-    private static float beta = (float)0.003;
+    private static float beta = (float)0.004;
     
     /*
     Raio of the robot.
