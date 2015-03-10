@@ -32,10 +32,10 @@ public class Main {
         t1.setDaemon(true);
         t1.start();
         
-//        StartBnYellowWorld startYellowWorld = new StartBnYellowWorld();
-//        Thread t2 = new Thread(startYellowWorld);
-//        t2.setDaemon(true);
-//        t2.start();
+        StartBnYellowWorld startYellowWorld = new StartBnYellowWorld();
+        Thread t2 = new Thread(startYellowWorld);
+        t2.setDaemon(true);
+        t2.start();
        
         Scanner userInput = new Scanner(System.in);
         String userAnswer;

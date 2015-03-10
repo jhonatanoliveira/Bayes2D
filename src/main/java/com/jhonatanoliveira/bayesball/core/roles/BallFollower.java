@@ -14,8 +14,8 @@ import com.jhonatanoliveira.bayesball.core.World;
  */
 public class BallFollower extends PlayerRole {
     
-    private static final float DISTANCE_FROM_BALL = 120;
-    private static final float ERROR_TOLERANCE = 5;
+    private static final float DISTANCE_FROM_BALL = 50;
+    private static final float ERROR_TOLERANCE = 80;
     private static final float DISTANCE_FROM_ROBOT = 300;
     
     @Override
